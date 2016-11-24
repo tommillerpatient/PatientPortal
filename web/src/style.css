@@ -1,0 +1,12 @@
+.form-group input {
+    border: 1px solid #8a7477;
+    border-radius: unset;
+    color: #444;
+    font-size: 13.5px;
+    height: auto;
+    line-height: 18px;
+    margin-bottom: 10px;
+    padding: 11px 8px !important;
+    width: auto !important;
+    min-width: 300px;
+}
