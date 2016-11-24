@@ -1,3 +1,14 @@
+.app-content{
+    box-sizing: border-box;
+    min-height: 500px;
+}
+
+.app-content:before,
+.app-content:after{
+    display: table;
+    content: " ";
+}
+
 .form-group input {
     border: 1px solid #8a7477;
     border-radius: unset;
@@ -9,4 +20,32 @@
     padding: 11px 8px !important;
     width: auto !important;
     min-width: 300px;
+}
+
+.journey{
+    clear: both;
+    box-sizing: border-box;
+}
+
+.journey-map{
+    float: left;
+    width: 300px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.journey-content{
+    float: left;
+    padding: 10px;
+}
+
+.journey-map-header{
+    background-color: #999;
+    color: white;
+    padding: 10px;
+}
+
+.journey-map-content{
+    background-color: #e8e8e8;
+    padding: 10px;
 }
