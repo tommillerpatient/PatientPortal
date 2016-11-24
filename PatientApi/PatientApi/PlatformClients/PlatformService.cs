@@ -6,13 +6,13 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Newtonsoft.Json;
-using PatientService.PlatformClients.Dtos;
-using PatientService.PlatformClients.Enums;
-using PatientService.PlatformClients.Models;
-using PatientService.PlatformClients.Requests;
-using PatientService.PlatformClients.Responses;
+using PatientApi.PlatformClients.Dtos;
+using PatientApi.PlatformClients.Enums;
+using PatientApi.PlatformClients.Models;
+using PatientApi.PlatformClients.Requests;
+using PatientApi.PlatformClients.Responses;
 
-namespace PatientService.PlatformClients
+namespace PatientApi.PlatformClients
 {
     public class PlatformService
     {

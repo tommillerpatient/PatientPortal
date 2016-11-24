@@ -1,4 +1,4 @@
-﻿namespace PatientService.PlatformClients.Enums
+﻿namespace PatientApi.PlatformClients.Enums
 {
 	public enum PolicyType
 	{

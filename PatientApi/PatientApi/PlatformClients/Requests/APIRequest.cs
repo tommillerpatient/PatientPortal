@@ -1,4 +1,4 @@
-﻿namespace PatientService.PlatformClients.Requests
+﻿namespace PatientApi.PlatformClients.Requests
 {
     public class APIRequest
     {

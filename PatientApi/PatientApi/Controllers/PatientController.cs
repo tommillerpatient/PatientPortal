@@ -3,8 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PatientApi.Helpers;
-using PatientService.PlatformClients;
-using PatientService.PlatformClients.Models;
+using PatientApi.PlatformClients;
+using PatientApi.PlatformClients.Models;
 
 namespace PatientApi.Controllers
 {
@@ -23,8 +23,24 @@ namespace PatientApi.Controllers
         [Route("add")]
         public HttpResponseMessage SavePatient([FromBody]AddPatienModel model)
         {
-            var res = new PlatformService().AddPatient(model);
-            return Request.CreateResponse(HttpStatusCode.OK, res);
+            try
+            {
+                var res = new PlatformService().AddPatient(model);
+                var status = new PlatformService().ResetLoginCredentials(model.EmailAddress, model.Password);
+                if (res.Success && status)
+                {
+                    var token = Guid.NewGuid().ToString();
+                    var patient = new PlatformService().GetPatient(int.Parse(res.Body));
+                    UserHelper.SetPatient(token, patient);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Token = token, Patient = patient });
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, new { Error = res.Body });
+
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new { Error = e.GetBaseException().Message });
+            }
         }
 
         [HttpPost]
@@ -38,7 +54,7 @@ namespace PatientApi.Controllers
                 new PlatformService().UpdatePatient(model);
                 var patient = new PlatformService().GetPatient(current.PatientId);
                 UserHelper.SetPatient(token, patient);
-                return Request.CreateResponse(HttpStatusCode.OK, new { Error = "" });
+                return Request.CreateResponse(HttpStatusCode.OK, new { Patient = patient });
             }
             catch (Exception e)
             {

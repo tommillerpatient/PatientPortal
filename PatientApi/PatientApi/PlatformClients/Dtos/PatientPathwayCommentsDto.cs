@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PatientService.PlatformClients.Dtos
+namespace PatientApi.PlatformClients.Dtos
 {
 	public class PatientPathwayCommentsDto
 	{

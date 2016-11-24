@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PatientService.PlatformClients.Enums
+namespace PatientApi.PlatformClients.Enums
 {
 	public enum PatientCoverageType
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
-using PatientService.PlatformClients.Enums;
+using PatientApi.PlatformClients.Enums;
 
-namespace PatientService.PlatformClients.Requests
+namespace PatientApi.PlatformClients.Requests
 {
     public class GetPatientCommentsRequestBody
     {

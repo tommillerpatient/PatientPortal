@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PatientApi.Helpers;
-using PatientService.PlatformClients;
+using PatientApi.PlatformClients;
 
 namespace PatientApi.Controllers
 {

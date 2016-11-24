@@ -1,4 +1,4 @@
-﻿namespace PatientService.PlatformClients.Dtos
+﻿namespace PatientApi.PlatformClients.Dtos
 {
     public class PatientPathwayShortDto
     {

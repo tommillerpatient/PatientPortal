@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PatientService.PlatformClients.Requests
+namespace PatientApi.PlatformClients.Requests
 {
     public class GetPathwayPatientParameterizedRequestBody
     {

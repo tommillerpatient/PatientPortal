@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using PatientService.PlatformClients.Dtos;
+using PatientApi.PlatformClients.Dtos;
 
 namespace PatientApi.Helpers
 {
@@ -9,20 +9,26 @@ namespace PatientApi.Helpers
 
         public static void SetPatient(string token, PatientDto patient)
         {
-            if (patient != null)
+            lock (Patient)
             {
-                Patient[token] = patient;
-            }
-            else
-            {
-                Patient.Remove(token);
+                if (patient != null)
+                {
+                    Patient[token] = patient;
+                }
+                else
+                {
+                    Patient.Remove(token);
+                }
             }
             
         }
 
         public static PatientDto GetPatient(string token)
         {
-            return Patient.ContainsKey(token) ? Patient[token] : null;
+            lock (Patient)
+            {
+                return Patient.ContainsKey(token) ? Patient[token] : null;
+            }
         }
 
     }

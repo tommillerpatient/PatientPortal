@@ -105,11 +105,13 @@ angular.module('account', [])
             data: patient
         };
 
-        req.url = '/api/patient/add';
+        req.url = SERVICE_URL + '/api/patient/add';
 
         $http(req).then(function (res) {
 
-            cb(res.data);
+            setToken(res.data.token);
+            setPatient(res.data.patient);
+            cb(res.data.error);
 
         }).catch(function (e) {
             cb(e);
@@ -130,6 +132,7 @@ angular.module('account', [])
 
         $http(req).then(function (res) {
 
+            setPatient(res.data.patient);
             cb(res.data.error);
 
         }).catch(function (e) {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace PatientService.PlatformClients.Enums
+namespace PatientApi.PlatformClients.Enums
 {
 	public enum StepOfCareStatus
 	{

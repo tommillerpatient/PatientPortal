@@ -28,7 +28,9 @@ module.exports = {
         "patient/login": './src/patient/login/app.js',
         "patient/update/password": './src/patient/update/password/app.js',
         "patient/update/profile": './src/patient/update/profile/app.js',
-        "patient/journey": './src/patient/journey/app.js'
+        "patient/journey": './src/patient/journey/app.js',
+        "patient/register": './src/patient/register/app.js',
+        "patient/logoff": './src/patient/logoff/app.js'
     },
     output: {
         publicPath: "/",
@@ -65,70 +67,50 @@ module.exports = {
             DEBUG: DEBUG,
             WEB_URL: JSON.stringify(WEB_URL),
             SERVICE_URL: JSON.stringify(SERVICE_URL)
-        })
-    ]
-};
-
-if(DEBUG){
-
-    module.exports.plugins.push(
+        }),
+        new CopyWebpackPlugin([
+            { from: './src/style.css', to: './style.css' }
+        ]),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/login/index.html',
             render: render('./src/patient/login/index.html')
-        })
-    );
-
-    module.exports.plugins.push(
+        }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/update/password/index.html',
             render: render('./src/patient/update/password/index.html')
-        })
-    );
-
-    module.exports.plugins.push(
+        }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/update/profile/index.html',
             render: render('./src/patient/update/profile/index.html')
-        })
-    );
-
-    module.exports.plugins.push(
+        }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/journey/index.html',
             render: render('./src/patient/journey/index.html')
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            template: './src/template.hbs',
+            filename: './patient/register/index.html',
+            render: render('./src/patient/register/index.html')
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            template: './src/template.hbs',
+            filename: './patient/logoff/index.html',
+            render: render('./src/patient/logoff/index.html')
         })
-    );
+    ]
+};
 
-    module.exports.plugins.push(
-        new CopyWebpackPlugin([
-
-            { from: './src/style.css', to: './style.css' },
-
-        ])
-    );
-
-}else {
-
-    module.exports.plugins.push(
-        new CopyWebpackPlugin([
-
-            { from: './src/patient/login/index.html', to: './patient/login/index.html' },
-            { from: './src/patient/update/password/index.html', to: './patient/update/password/index.html' },
-            { from: './src/patient/update/profile/index.html', to: './patient/update/profile/index.html' },
-            { from: './src/patient/journey/index.html', to: './patient/journey/index.html' },
-
-            { from: './src/style.css', to: './style.css' },
-
-        ])
-    );
+if(!DEBUG){
 
     module.exports.plugins.push(
         new webpack.optimize.UglifyJsPlugin({

@@ -1,4 +1,4 @@
-﻿namespace PatientService.PlatformClients.Responses
+﻿namespace PatientApi.PlatformClients.Responses
 {
     public class ApiResponse
     {

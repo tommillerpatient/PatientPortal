@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using PatientService.PlatformClients.Dtos;
-using PatientService.PlatformClients.Enums;
+using PatientApi.PlatformClients.Dtos;
+using PatientApi.PlatformClients.Enums;
 
-namespace PatientService.PlatformClients.Requests
+namespace PatientApi.PlatformClients.Requests
 {
     public class SavePathwayPatientInformationRequestBody
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PatientService.PlatformClients.Models
+namespace PatientApi.PlatformClients.Models
 {
     public class AddPatienModel
     {
@@ -13,5 +13,6 @@ namespace PatientService.PlatformClients.Models
         public string City { get; set; }
         public int StateId { get; set; }
         public string MedicalRecordNumber { get; set; }
+        public string Password { get; set; }
     }
 }

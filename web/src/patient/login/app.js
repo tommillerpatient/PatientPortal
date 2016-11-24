@@ -3,6 +3,10 @@ import angular from 'angular';
 angular.module('app', [require('../../common/patient/account')])
     .controller('LoginCtrl',['$scope', 'AccountService', function ($scope, AccountService) {
 
+        if(AccountService.auth() && !DEBUG){
+            location.href = '/patient/journey';
+        }
+
         $scope.email = "TNTTest+1@gmail.com";
         $scope.password = "12345678",
             $scope.error = "";
@@ -20,7 +24,7 @@ angular.module('app', [require('../../common/patient/account')])
                     if(DEBUG){
                         alert("done");
                     }else {
-                        location.href = '/patient/journey'
+                        location.href = '/patient/journey';
                     }
                 }
             });

@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/',  function(req, res){
-  res.redirect('/patient/update/password/index.html');
+  res.redirect('/patient/login/index.html');
 });
 
 http.createServer(app).listen(app.get('port'), function(){

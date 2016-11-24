@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PatientService.PlatformClients.Models
+namespace PatientApi.PlatformClients.Models
 {
     public class UpdatePatienModel
     {

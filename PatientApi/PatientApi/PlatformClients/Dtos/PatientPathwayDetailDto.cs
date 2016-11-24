@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using PatientService.PlatformClients.Enums;
+using PatientApi.PlatformClients.Enums;
 
-namespace PatientService.PlatformClients.Dtos
+namespace PatientApi.PlatformClients.Dtos
 {
     public class PatientPathwayDetailDto
     {
