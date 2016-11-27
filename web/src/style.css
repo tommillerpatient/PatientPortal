@@ -1,6 +1,5 @@
 .app-content{
     box-sizing: border-box;
-    min-height: 500px;
 }
 
 .app-content:before,
@@ -23,8 +22,8 @@
 }
 
 .journey{
-    clear: both;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .journey-map{
@@ -48,4 +47,59 @@
 .journey-map-content{
     background-color: #e8e8e8;
     padding: 10px;
+}
+
+.clearfix{
+    clear: both;
+}
+
+.sidebarsection {
+    background: #e8e8e8 none repeat scroll 0 0;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.headerimg {
+    background-image: url('var(--content-url)images/headerbg.png');
+    background-position: center top;
+    background-size: 100% 100%;
+    color: #ffffff;
+    display: block;
+    float: left;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+}
+
+.single {
+    float: left;
+    margin: 10px 0;
+    /*width: 100%;*/
+}
+.single label {
+    display: inline-block;
+    max-width: 100%;
+    font-weight: 700;
+    margin: 6px 0 6px 2px;
+    color: #111755;
+    font-size: 17px;
+}
+
+.single img{
+    vertical-align: middle;
+}
+
+.single ul{ padding-left:30px; margin-bottom:0px;}
+.single ul li.red{ list-style-image: url('var(--content-url)images/dot_red.png');}
+.single ul li.green{ list-style-image: url('var(--content-url)images/dot_green.png');}
+.single ul li a{ padding:0 8px; display:block; font-size:14px; color:#5d5d5d;}
+
+a.more {
+    /* font-family: inherit; */
+    font-style: italic;
+    color: #111755 !important;
+    text-decoration: underline;
 }

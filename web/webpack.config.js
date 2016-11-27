@@ -1,26 +1,49 @@
 var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
+var postcss = require("postcss");
+var handlebars = require('handlebars');
+var customProperties = require("postcss-custom-properties")
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DEBUG = !process.argv.includes('--release');
 
-var WEB_URL;
+var CONTENT_URL;
 var SERVICE_URL;
 
 if(DEBUG){
-    WEB_URL = '/';
-    SERVICE_URL = 'http://localhost:28507';
+    SERVICE_URL = 'http://localhost:28507/';
+    CONTENT_URL = '/';
 }else {
-    WEB_URL = '/';
-    SERVICE_URL = 'http://patientportal.enode.org';
-
+    SERVICE_URL = 'http://patientportal.enode.org/';
+    CONTENT_URL = 'http://patientportal.enode.org/';
 }
 
+var pageContext = {
+    contentUrl: CONTENT_URL
+};
 
-function render(page){
-    return fs.readFileSync(page);
+var variables = {
+    "--content-url": CONTENT_URL,
+};
+
+function render(url){
+    var page = fs.readFileSync(url, "utf8");
+    if(/\.hbs$/.test(url)) {
+        var template = handlebars.compile(page);
+        return template(pageContext);
+    }
+    return page;
+}
+
+function cssTransform(content, path) {
+    var plugin = customProperties();
+    plugin.setVariables(variables);
+    return postcss()
+        .use(plugin)
+        .process(content)
+        .css;
 }
 
 module.exports = {
@@ -65,47 +88,48 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             DEBUG: DEBUG,
-            WEB_URL: JSON.stringify(WEB_URL),
-            SERVICE_URL: JSON.stringify(SERVICE_URL)
+            SERVICE_URL: JSON.stringify(SERVICE_URL),
+            CONTENT_URL: JSON.stringify(CONTENT_URL),
         }),
         new CopyWebpackPlugin([
-            { from: './src/style.css', to: './style.css' }
+            { from: './src/style.css', to: './style.css', transform: cssTransform },
+            { from: './src/images', to: './images'  }
         ]),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/login/index.html',
-            render: render('./src/patient/login/index.html')
+            render: render('./src/patient/login/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/update/password/index.html',
-            render: render('./src/patient/update/password/index.html')
+            render: render('./src/patient/update/password/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/update/profile/index.html',
-            render: render('./src/patient/update/profile/index.html')
+            render: render('./src/patient/update/profile/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/journey/index.html',
-            render: render('./src/patient/journey/index.html')
+            render: render('./src/patient/journey/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/register/index.html',
-            render: render('./src/patient/register/index.html')
+            render: render('./src/patient/register/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
             template: './src/template.hbs',
             filename: './patient/logoff/index.html',
-            render: render('./src/patient/logoff/index.html')
+            render: render('./src/patient/logoff/index.hbs')
         })
     ]
 };

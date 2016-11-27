@@ -62,7 +62,7 @@ angular.module('account', [])
             }
         };
 
-        req.url = SERVICE_URL + '/api/account/sign-in?email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password);
+        req.url = SERVICE_URL + 'api/account/sign-in?email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password);
 
         $http(req).then(function (res) {
 
@@ -71,7 +71,7 @@ angular.module('account', [])
             cb(res.data.error);
 
         }).catch(function (e) {
-            cb(e);
+            cb(JSON.stringify(e));
         });
     }
 
@@ -84,14 +84,14 @@ angular.module('account', [])
             }
         };
 
-        req.url = SERVICE_URL + '/api/account/reset?email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password) + '&newPassword=' + encodeURIComponent(newPassword);
+        req.url = SERVICE_URL + 'api/account/reset?email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password) + '&newPassword=' + encodeURIComponent(newPassword);
 
         $http(req).then(function (res) {
 
             cb(res.data.error);
 
         }).catch(function (e) {
-            cb(e);
+            cb(JSON.stringify(e));
         });
     }
 
@@ -105,7 +105,7 @@ angular.module('account', [])
             data: patient
         };
 
-        req.url = SERVICE_URL + '/api/patient/add';
+        req.url = SERVICE_URL + 'api/patient/add';
 
         $http(req).then(function (res) {
 
@@ -114,7 +114,7 @@ angular.module('account', [])
             cb(res.data.error);
 
         }).catch(function (e) {
-            cb(e);
+            cb(JSON.stringify(e));
         });
     }
 
@@ -128,7 +128,7 @@ angular.module('account', [])
             data: patient
         };
 
-        req.url = SERVICE_URL + '/api/patient/update?token=' + getToken();
+        req.url = SERVICE_URL + 'api/patient/update?token=' + getToken();
 
         $http(req).then(function (res) {
 
@@ -136,7 +136,7 @@ angular.module('account', [])
             cb(res.data.error);
 
         }).catch(function (e) {
-            cb(e);
+            cb(JSON.stringify(e));
         });
     }
 

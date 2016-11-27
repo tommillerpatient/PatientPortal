@@ -1,0 +1,124 @@
+<div ng-controller="JourneyCtrl">
+    <img src="{{contentUrl}}images/banner_3.png" alt="" width="100%">
+    <p ng-show="submitting">loading...</p>
+    <div class="journey">
+        <div class="journey-map">
+            <div class="sidebarsection">
+                <div class="headerimg">MY Journey</div>
+                <div class="single">
+                    <label><img src="{{contentUrl}}images/icn_blood_work.png" alt="">Blood Work</label>
+                    <ul>
+                        <li ng-class="{red:!getActive(step.patientTaskList[0]),green:getActive(step.patientTaskList[0])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[0].patientTaskId)">
+                            <div> Lab appointment at Quest or Labcorp</div>
+                            <a href="#" class="more">more info</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="single">
+                    <label><img src="{{contentUrl}}images/ice_cheast-x-ray.png" alt="">Chest X-Ray</label>
+                    <ul>
+
+                        <li ng-class="{red:!getActive(step.patientTaskList[1]),green:getActive(step.patientTaskList[1])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[1].patientTaskId)">
+                            <div> No appointment needed chest X-ray</div>
+
+                            <a href="#" class="more">more info</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="single">
+                    <label>
+                        <img src="{{contentUrl}}images/ice_nutrition.png" alt="">
+                        Nutrition Counseling
+                    </label>
+                    <ul>
+
+                        <li ng-class="{red:!getActive(step.patientTaskList[2]),green:getActive(step.patientTaskList[2])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[2].patientTaskId)">
+                            <div> 7 Consecutive meetings with your nutritionlist</div>
+
+                            <a href="#" class="more">more info</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="single">
+                    <label><img src="{{contentUrl}}images/ice_support-gp.png" alt="">Support Group Mtg.</label>
+                    <ul>
+
+                        <li ng-class="{red:!getActive(step.patientTaskList[3]),green:getActive(step.patientTaskList[3])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[3].patientTaskId)">
+                            <div> 2 meetings required for surgery clearance</div>
+
+                            <a href="#" class="more">more info</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="single">
+                    <label><img src="{{contentUrl}}images/icn_cardiology.png" alt="">Pulmonary Evaluation</label>
+                    <ul>
+
+                        <li ng-class="{red:!getActive(step.patientTaskList[4]),green:getActive(step.patientTaskList[4])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[4].patientTaskId)">
+                            <div> 5 meetings required for clearance</div>
+
+                            <a href="#" class="more">more info</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="single">
+                    <label><img src="{{contentUrl}}images/icn_pulmonary.png" alt="">Cardiology</label>
+                    <ul>
+
+                        <li ng-class="{red:!getActive(step.patientTaskList[5]),green:getActive(step.patientTaskList[5])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[5].patientTaskId)">
+                            <div>Choose a Provider from the provided list</div>
+
+                            <a href="#" class="more">more info</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="single">
+                    <label><img src="{{contentUrl}}images/icn_gastrointestinal.png" alt="">Drexel GI Endoscopy</label>
+                    <ul>
+
+                        <li ng-class="{red:!getActive(step.patientTaskList[6]),green:getActive(step.patientTaskList[6])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[6].patientTaskId)">
+                            <div>Make an appointment with Drexel GI for an upper endoscopy</div>
+
+                            <a href="#" class="more">more info</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <div class="single">
+                    <label><img src="{{contentUrl}}images/icn_phycological.png" alt="">Psychological Eval.</label>
+                    <ul>
+                        <li ng-class="{red:!getActive(step.patientTaskList[7]),green:getActive(step.patientTaskList[7])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[7].patientTaskId)">
+                            <div>Psychological evaluation for surgical readiness</div>
+                            <a href="#" class="more">more info</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="journey-content" ng-show="task">
+            <h4 ng-bind="step.stepDetail.name"></h4>
+            <strong ng-bind="task.stepOfCareTask.name"></strong><span>
+                            (<span ng-show="activeStatus" style="color: green" ng-bind="statuses[task.status]"></span>
+                            <span ng-hide="activeStatus" style="color: red" ng-bind="statuses[task.status]"></span>)
+                        </span>
+            <div ng-bind="'Due Date: ' + dueDate"></div>
+            <div ng-bind="'Completed Date: ' + completedOn"></div>
+        </div>
+    </div>
+</div>

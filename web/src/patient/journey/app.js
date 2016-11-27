@@ -24,14 +24,15 @@ angular.module('app', [require('../../common/patient/account'),require('../../co
         $scope.submitting = true;
         PathwayService.get(patient.patientId, pathway.pathwayId, function (details) {
             $scope.details = details;
+            $scope.step = details.patientStepDetailList[0];
             $scope.submitting = false;
         });
 
         $scope.getTask = function (stepId, taskId) {
             PathwayService.getTask(patient.patientId, pathway.pathwayId, stepId, taskId, function (task, step) {
                 $scope.task = task;
-                $scope.step = step;
 
+                $scope.activeStatus = $scope.getActive(task);
                 var dueDate = moment(task.dueDate);
                 var completedOn = moment(task.completedOn);
                 $scope.dueDate = dueDate.isValid() ? dueDate.format('L') : '';
@@ -39,5 +40,8 @@ angular.module('app', [require('../../common/patient/account'),require('../../co
             });
         };
 
+        $scope.getActive = function (task) {
+            return task.status == 3;
+        };
 
     }]);

@@ -33,7 +33,7 @@ angular.module('pathway', [])
                 }
             };
 
-            req.url = SERVICE_URL +  '/api/patient/pathway/' + patientId + '/' + pathwayId;
+            req.url = SERVICE_URL +  'api/patient/pathway/' + patientId + '/' + pathwayId;
 
             $http(req).then(function (res) {
 
