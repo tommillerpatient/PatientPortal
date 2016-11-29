@@ -3,6 +3,8 @@ import angular from 'angular';
 angular.module('app', [require('../../common/patient/account')])
     .controller('RegisterCtrl',['$scope', 'AccountService', function ($scope, AccountService) {
 
+        var journeyUrl = '/patient/journey';
+
         $scope.confirmPassword = "";
 
         $scope.patient = {
@@ -36,7 +38,7 @@ angular.module('app', [require('../../common/patient/account')])
                 if (err) {
                     $scope.error = err;
                 } else {
-                    location.href = '/patient/journey';
+                    location.href = journeyUrl;
                 }
             });
         };

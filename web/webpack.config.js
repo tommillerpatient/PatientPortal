@@ -9,15 +9,18 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DEBUG = !process.argv.includes('--release');
 
+var WEB_URL;
 var CONTENT_URL;
 var SERVICE_URL;
 
 if(DEBUG){
-    SERVICE_URL = 'http://localhost:28507/';
+    WEB_URL = '/';
     CONTENT_URL = '/';
+    SERVICE_URL = 'http://localhost:28507/';
 }else {
-    SERVICE_URL = 'http://patientportal.enode.org/';
-    CONTENT_URL = 'http://patientportal.enode.org/';
+    WEB_URL = '/sequenceapi/';
+    SERVICE_URL = 'https://enode.org/sequenceapi/';
+    CONTENT_URL = 'https://enode.org/sequenceapi/';
 }
 
 var pageContext = {
@@ -97,36 +100,42 @@ module.exports = {
         ]),
         new HtmlWebpackPlugin({
             inject: false,
+            contentUrl: CONTENT_URL,
             template: './src/template.hbs',
             filename: './patient/login/index.html',
             render: render('./src/patient/login/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
+            contentUrl: CONTENT_URL,
             template: './src/template.hbs',
             filename: './patient/update/password/index.html',
             render: render('./src/patient/update/password/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
+            contentUrl: CONTENT_URL,
             template: './src/template.hbs',
             filename: './patient/update/profile/index.html',
             render: render('./src/patient/update/profile/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
+            contentUrl: CONTENT_URL,
             template: './src/template.hbs',
             filename: './patient/journey/index.html',
             render: render('./src/patient/journey/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
+            contentUrl: CONTENT_URL,
             template: './src/template.hbs',
             filename: './patient/register/index.html',
             render: render('./src/patient/register/index.hbs')
         }),
         new HtmlWebpackPlugin({
             inject: false,
+            contentUrl: CONTENT_URL,
             template: './src/template.hbs',
             filename: './patient/logoff/index.html',
             render: render('./src/patient/logoff/index.hbs')
