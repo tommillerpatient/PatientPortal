@@ -1,8 +1,8 @@
-import angular from 'angular';
-import moment from 'moment';
+var app = CMS
+    ? angular.module('app')
+    : angular.module('app', [require('../../../common/patient/account'), require('../../../common/patient/pathway')]);
 
-angular.module('app', [require('../../../common/patient/account')])
-    .controller('ProfileCtrl',['$scope', 'AccountService', function ($scope, AccountService) {
+app.controller('ProfileCtrl',['$scope', 'AccountService', function ($scope, AccountService) {
 
         $scope.error = "";
         $scope.message = "";

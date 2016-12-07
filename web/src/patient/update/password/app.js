@@ -1,7 +1,8 @@
-import angular from 'angular';
+var app = CMS
+    ? angular.module('app')
+    : angular.module('app', [require('../../../common/patient/account'), require('../../../common/patient/pathway')]);
 
-angular.module('app', [require('../../../common/patient/account')])
-    .controller('PasswordCtrl',['$scope', 'AccountService', function ($scope, AccountService) {
+app.controller('PasswordCtrl',['$scope', 'AccountService', function ($scope, AccountService) {
 
         var patient = AccountService.getPatient();
 

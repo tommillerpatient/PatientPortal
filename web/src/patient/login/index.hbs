@@ -1,23 +1,257 @@
-<div ng-controller="LoginCtrl">
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="email">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="password">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" class="borderButton" ng-click="signIn()">Submit</button>
-            </div>
-        </div>
-        <div ng-show="submitting">submitting...</div>
-        <div ng-show="error" ng-bind="error"></div>
-    </form>
+<!-- begin resources -->
+<div>
+    <div>
+        <div>{{contentUrl}}vendors/bootstrap/css/bootstrap.css</div>
+        <div>{{contentUrl}}custom.css</div>
+        <div>{{contentUrl}}style.css</div>
+        <div>{{contentUrl}}app-fix.js</div>
+        <div>{{contentUrl}}vendors/angular/angular.min.js</div>
+    </div>
+    <hr/>
 </div>
+<!-- end resources -->
+<!-- begin cms content -->
+<div class="content-wrapper" ng-controller="LoginCtrl">
+    <div class="banner">
+        <div class="app-container"> <img src="{{contentUrl}}images/banner_1.png" alt=""> </div>
+    </div>
+    <div class="app-container">
+        <div class="col-sm-7">
+            <div class="alert alert-success" ng-show="seminar.Success1" >
+                <span ng-bind-html="seminar.MessageSuccess1"></span>
+            </div>
+            <div class="para">
+                <h1> The Benefits of <span>Bariatric Surgery</span></h1>
+                <p>“Have you tried to lose weight and just can't seem to lose it or keep it off? Do you need to lose at least 75 to 100 pounds? If so, bariatric surgery may be right for you. Bariatric surgery is the medical answer for weight loss that has been proven to help patients lose weight and keep it off. “</p>
+
+            </div>
+            <div class="para">
+                <h1>Surgical <span> Options</span></h1>
+                <p>There are several types of bariatric procedures you can choose. The surgical options vary in how the surgery is performed and its typical results. You and your doctor can discuss which bariatric surgery is right for you.</p>
+
+            </div>
+            <div class="para">
+                <h1>Begin Your<span> Journey</span></h1>
+                <p>Once you schedule your surgery, you can register on this site to streamline the process, communicate with your doctor, get important resources, connect with other patients and more.</p>
+
+            </div>
+        </div>
+        <div class="col-sm-5 sidebanner text-center">
+            <img id="myImg" src="{{contentUrl}}images/imgNew1.png" alt=""><br /><br />
+        </div>
+
+        <div class="sep col-sm-12"></div>
+        <div class="loginbox_otr col-sm-4">
+            <div class="login">
+                <div class="loginheader">RETURNING PATIENT LOGIN</div>
+                <div name="signInForm" class="login-form">
+                    <div class="alert alert-danger" ng-show="person.Error" id="diverror222" style="display:none;">
+                        <strong>Error!</strong><span ng-bind-html="person.MessageError"></span>
+                    </div>
+
+                    <div class="alert alert-danger" id="EmailConfirm" style="display:none;">
+                        <strong></strong><span>The administrator has not yet activated your account</span>
+                    </div>
+                    <div class="alert alert-danger" id="VerifyEmail" style="display:none;">
+                        <strong></strong><span>Please verify your email account to continue</span>
+                    </div>
+                    <div class="alert alert-danger" id="InvalidUP" style="display:none;">
+                        <strong></strong><span>Please enter valid email or password</span>
+                    </div>
+                    <div class="alert alert-danger" id="blockac" style="display:none;">
+                        <strong></strong><span>your account is blocked.please try after 5 minutes.</span>
+                    </div>
+                    <div ng-show="submitting">submitting...</div>
+                    <div ng-show="error" ng-bind="error"></div>
+                    <div class="form-group">
+                        <input type="text" ng-model="email" class="form-control" placeholder="E-mail" name="username" id="Email" value="" autofocus />
+                    </div>
+                    <div class="form-group">
+                        <input ng-model="password" class="form-control" type="password" placeholder="Password" name="password" id="PasswordHash" />
+                    </div>
+
+                    <input type="button" class="btn btn-block btn-primary" name="login" id="loginbtn" value="Login" data-ng-click="signIn()" style="margin-bottom:10px !important;"/>
+
+                    <div class="lost_password">
+                        <a href="#">Lost your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="paraimg" style="padding-top:0px;">
+                <div class="col-sm-8">
+                    <h1 class="gray text-left" style="margin-top:0px;"> Visit <span style="font-weight:bold;">Bariatrics Portal</span></h1>
+                    <p class="text-left" style="padding-top:20px;">We know managing the details of your family's health care can sometimes cause its own symptoms,like headache and fatigue.So to provide relief,Hahnemann University Hospital Offers My Patient Portal.With this helpful online applications,you can access your health records,share information with doctors,and save time paying health bills,among other things-all from the comfort and privacy of your home.</p>
+
+                </div>
+                <div class="img col-sm-4"> <img src="{{contentUrl}}images/paraimg.png" alt=""> </div>
+
+            </div>
+        </div>
+        <div class="bgshadow"><img src="{{contentUrl}}images/boxshadow.png" alt=""></div>
+    </div>
+
+    <div id="myModal" class="modal">
+
+
+        <div class="modal-content profile-content">
+            <span class="close">
+                    <img src="{{contentUrl}}images/close_icon.png" />
+                </span>
+            <div class="modal-header text-center">
+                <h1 class="modal-title blue" style="text-align: center;font-weight: 100">BARIATRIC ONLINE SEMINAR</h1>
+                <h3 class="modal-title ">Hahnemann University Hospitals<br /><span class="blue">FREE Online Seminars</span></h3>
+            </div>
+            <div class="modal-body ">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="box-bordered">
+                            <form role="form" style=" padding: 20px 5px;">
+                                <div class="alert alert-danger" ng-show="seminar.Error1" id="sfgs" >
+                                    <strong>Error!</strong><span ng-bind-html="seminar.MessageError1"></span>
+                                </div>
+
+
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label for="name" class="control-label">First & Last Name:</label>
+                                        <input type="text" class="form-control" id="f_name" placeholder="Enter name" ng-model="seminar.firstname">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label for="email" class="control-label">E-mail:</label>
+                                        <input type="email" class="form-control" id="Emailseminar" placeholder="Enter e-mail" ng-model="seminar.email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone" class="control-label">Phone Number:</label>
+                                        <input type="text" class="form-control" id="phone" placeholder="Enter phone" ng-model="seminar.phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date" class="control-label">Pick a Seminar Date:</label>
+
+
+                                        <div class="">
+                                            <select ng-options="s.seminarid as s.seminardatestring for s in SeminarDateList" ng-model="seminar.seminarid" id="seminardate" class="form-control">
+                                                <option value="">--Select--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-6 content ">
+                                    <div class="content2">
+                                        <div class="calnder">
+                                            <div class="column_right_grid calender">
+                                                <div class="cal1">
+                                                    <div class="clndr">
+                                                        <div class="clndr-controls">
+                                                            <div class="clndr-control-button">
+                                                                <p class="clndr-previous-button">previous</p>
+                                                            </div>
+                                                            <div class="month">SEPTEMBER 2015</div>
+                                                            <div class="clndr-control-button rightalign">
+                                                                <p class="clndr-next-button">next</p>
+                                                            </div>
+                                                        </div>
+                                                        <table class="clndr-table">
+                                                            <thead>
+                                                            <tr class="header-days">
+                                                                <td class="header-day">SUN</td>
+                                                                <td class="header-day">MON</td>
+                                                                <td class="header-day">TUE</td>
+                                                                <td class="header-day">WED</td>
+                                                                <td class="header-day">THU</td>
+                                                                <td class="header-day">FRI</td>
+                                                                <td class="header-day">SAT</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+                                                                <td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+                                                                <td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+                                                                <td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+                                                                <td class="day past adjacent-month last-month calender-day-2015-04-26"><div class="day-contents">26</div></td>
+                                                                <td class="day past calender-day-2015-05-01"><div class="day-contents">1</div></td>
+                                                                <td class="day past calender-day-2015-05-02"><div class="day-contents">2</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day past calender-day-2015-05-03"><div class="day-contents">3</div></td>
+                                                                <td class="day past calender-day-2015-05-04"><div class="day-contents">4</div></td>
+                                                                <td class="day past calender-day-2015-05-05"><div class="day-contents">5</div></td>
+                                                                <td class="day past calender-day-2015-05-06"><div class="day-contents">6</div></td>
+                                                                <td class="day past calender-day-2015-05-07"><div class="day-contents">7</div></td>
+                                                                <td class="day past calender-day-2015-05-08"><div class="day-contents">8</div></td>
+                                                                <td class="day past calender-day-2015-05-09"><div class="day-contents">9</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day past event calender-day-2015-05-10"><div class="day-contents">10</div></td>
+                                                                <td class="day past event calender-day-2015-05-11"><div class="day-contents">11</div></td>
+                                                                <td class="day past event calender-day-2015-05-12"><div class="day-contents">12</div></td>
+                                                                <td class="day past event calender-day-2015-05-13"><div class="day-contents">13</div></td>
+                                                                <td class="day today event calender-day-2015-05-14"><div class="day-contents">14</div></td>
+                                                                <td class="day calender-day-2015-05-15"><div class="day-contents">15</div></td>
+                                                                <td class="day calender-day-2015-05-16"><div class="day-contents">16</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day calender-day-2015-05-17"><div class="day-contents">17</div></td>
+                                                                <td class="day calender-day-2015-05-18"><div class="day-contents">18</div></td>
+                                                                <td class="day calender-day-2015-05-19"><div class="day-contents">19</div></td>
+                                                                <td class="day calender-day-2015-05-20"><div class="day-contents">20</div></td>
+                                                                <td class="day event calender-day-2015-05-21"><div class="day-contents">21</div></td>
+                                                                <td class="day event calender-day-2015-05-22"><div class="day-contents">22</div></td>
+                                                                <td class="day event calender-day-2015-05-23"><div class="day-contents">23</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day calender-day-2015-05-24"><div class="day-contents">24</div></td>
+                                                                <td class="day calender-day-2015-05-25"><div class="day-contents">25</div></td>
+                                                                <td class="day calender-day-2015-05-26"><div class="day-contents">26</div></td>
+                                                                <td class="day calender-day-2015-05-27"><div class="day-contents">27</div></td>
+                                                                <td class="day calender-day-2015-05-28"><div class="day-contents">28</div></td>
+                                                                <td class="day calender-day-2015-05-29"><div class="day-contents">29</div></td>
+                                                                <td class="day calender-day-2015-05-30"><div class="day-contents">30</div></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="day calender-day-2015-05-31"><div class="day-contents">31</div></td>
+                                                                <td class="day adjacent-month next-month calender-day-2015-06-01"><div class="day-contents">1</div></td>
+                                                                <td class="day adjacent-month next-month calender-day-2015-06-02"><div class="day-contents">2</div></td>
+                                                                <td class="day adjacent-month next-month calender-day-2015-06-03"><div class="day-contents">3</div></td>
+                                                                <td class="day adjacent-month next-month calender-day-2015-06-04"><div class="day-contents">4</div></td>
+                                                                <td class="day adjacent-month next-month calender-day-2015-06-05"><div class="day-contents">5</div></td>
+                                                                <td class="day adjacent-month next-month calender-day-2015-06-06"><div class="day-contents">6</div></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{{contentUrl}}images/seminar_pic.jpg" class="img-responsive" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-primary" data-dismiss="modal">SEND</button>
+
+            </div>
+        </div>
+        <div id="caption"></div>
+    </div>
+</div>
+<!-- end cms content -->
+

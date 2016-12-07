@@ -11,9 +11,9 @@ namespace PatientApi.Controllers
         public ActionResult Index()
         {
 #if DEBUG
-            ViewBag.PortaltUrl = "/patient/login/index.html";
+            ViewBag.PortaltUrl = "/content/patient/login/index.html";
 #else
-            ViewBag.PortaltUrl = "/sequenceapi/patient/login/index.html";
+            ViewBag.PortaltUrl = "/content/patient/login/index.html";
 #endif
             return View();
         }

@@ -1,8 +1,5 @@
-import angular from 'angular';
-
-
 angular.module('pathway', [])
-    .service('PathwayService', ['$http', function ($http) {
+    .service('PathwayService', ['$http', 'AccountService', function ($http, AccountService) {
 
 
         $http.defaults.useXDomain = true;
@@ -10,20 +7,19 @@ angular.module('pathway', [])
         delete $http.defaults.headers.common["X-Requested-With"];
 
 
-        var details = null;
+        var pathway = null;
+        var queue = [];
 
-        var _patientId = null;
-        var _pathwayId = null;
 
         function get(patientId, pathwayId, cb) {
 
-            if (details && _patientId == patientId && _pathwayId == pathwayId) {
-                cb(details);
+            if (pathway) {
+                cb(pathway);
                 return;
             }
 
-            _patientId = patientId;
-            _pathwayId = pathwayId;
+            queue.push(cb);
+            if(queue.length > 1) return;
 
             var req = {
                 method: 'GET',
@@ -37,9 +33,18 @@ angular.module('pathway', [])
 
             $http(req).then(function (res) {
 
-                details = res.data;
-                cb(details);
-
+                pathway = res.data;
+                for (var i = 0; i < queue.length; i++) {
+                    queue[i](pathway);
+                }
+                queue = null;
+            }).catch(function (err) {
+                if(CMS){
+                    AccountService.signOut();
+                    location.href = "/";
+                }else {
+                    alert(JSON.stringify(err));
+                }
             });
 
         }
@@ -47,7 +52,7 @@ angular.module('pathway', [])
         function getTask(patientId, pathwayId, stepId, taskId, cb) {
             get(patientId, pathwayId, function () {
 
-                var steps = details.patientStepDetailList;
+                var steps = pathway.patientStepDetailList;
                 for (var i = 0; i < steps.length; i++) {
                     if (steps[i].stepDetail.stepId == stepId) {
                         var tasks = steps[i].patientTaskList;

@@ -1,6 +1,18 @@
+<!-- begin resources -->
+<div>
+    <div>
+        <div>{{contentUrl}}vendors/bootstrap/css/bootstrap.css</div>
+        <div>{{contentUrl}}custom.css</div>
+        <div>{{contentUrl}}style.css</div>
+        <div>{{contentUrl}}app-fix.js</div>
+        <div>{{contentUrl}}vendors/angular/angular.min.js</div>
+    </div>
+    <hr/>
+</div>
+<!-- end resources -->
+<!-- begin cms content -->
 <div ng-controller="PasswordCtrl">
-    <img src="{{contentUrl}}images/banner_3.png" alt="" width="100%">
-    <form>
+    <div class="form-horizontal">
         <div class="form-group">
             <label for="inputPassword1" class="col-sm-2 control-label">Current Password</label>
             <div class="col-sm-10">
@@ -27,5 +39,6 @@
         <div ng-show="submitting">submitting...</div>
         <div ng-show="message" ng-bind="message"></div>
         <div ng-show="error" ng-bind="error"></div>
-    </form>
+    </div>
 </div>
+<!-- end cms content -->

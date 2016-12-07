@@ -1,42 +1,87 @@
-<div ng-controller="RegisterCtrl">
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="First Name" ng-model="patient.firstName">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="input3" class="col-sm-2 control-label">Last Name</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="input3" placeholder="Last Name" ng-model="patient.lastName">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="patient.emailAddress">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword1" placeholder="Password" ng-model="patient.password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputPassword2" class="col-sm-2 control-label">Confirm Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm Password" ng-model="confirmPassword">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" class="borderButton" ng-click="signUp()">Sign up</button>
-            </div>
-        </div>
-        <div ng-show="submitting">submitting...</div>
-        <div ng-show="message" ng-bind="message"></div>
-        <div ng-show="error" ng-bind="error"></div>
-    </form>
+<!-- begin resources -->
+<div>
+    <div>
+        <div>{{contentUrl}}vendors/bootstrap/css/bootstrap.css</div>
+        <div>{{contentUrl}}custom.css</div>
+        <div>{{contentUrl}}style.css</div>
+        <div>{{contentUrl}}app-fix.js</div>
+        <div>{{contentUrl}}vendors/angular/angular.min.js</div>
+    </div>
+    <hr/>
 </div>
+<!-- end resources -->
+<!-- begin cms content -->
+<div class="content-wrapper" ng-controller="RegisterCtrl">
+    <div class="banner">
+        <div class="app-container"> <img src="{{contentUrl}}images/banner_1.png" alt=""> </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="app-container">
+        <div class="sentence">
+            <div class="row" style="background-color:#E8E8E8">
+
+                <h1 style="text-align: center">Create Your Patient Profile</h1>
+                <div style="height: 25px"></div>
+                <div style="text-align: center" ng-show="submitting">submitting...</div>
+                <div class="alert alert-danger" id="divsserror" ng-show="error" >
+                    <strong id="errorStrong">Error!</strong> <span ng-bind="error"></span>
+                </div>
+                <div class="col-md-10 col-md-offset-2">
+
+
+                    <div class="form-group col-md-5">
+                        <label for="first-name" class="sr-only">First name</label>
+                        <input type="text" required ng-model="patient.firstName" size="40" class="form-control input text-primary m_bottom_0" placeholder="First name" id="first-name" />
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="last-name" class="sr-only">Last name</label>
+                        <input type="text" ng-model="patient.lastName" required size="40" class="form-control input text-primary m_bottom_0" placeholder="Last name" id="last-name" />
+                    </div>
+
+                </div>
+                <div class="col-md-10 col-md-offset-2">
+
+
+                    <div class="form-group col-md-5">
+                        <label for="emailAddress" class="sr-only">Email address</label>
+                        <input type="text" required ng-model="patient.emailAddress" size="40" class="form-control input text-primary m_bottom_0" placeholder="Email" id="emailAddress" />
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="confirmEmail" class="sr-only">Confirm email address</label>
+                        <input type="text" ng-model="confirmEmail" required size="40" class="form-control input text-primary m_bottom_0" placeholder="Confirm Email" id="confirmEmail" />
+                    </div>
+
+                </div>
+                <div class="col-md-10 col-md-offset-2 m_top_0">
+
+
+                    <div class="col-md-5 form-group">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" required placeholder="Password" ng-model="patient.password" size="40" class="form-control input text-primary m_bottom_0" id="password" />
+
+                    </div>
+
+                    <div class=" col-md-5 form-group">
+                        <label for="confirmPassword" class="sr-only">Password</label>
+                        <input type="password" ng-maxlength="30" ng-minlength="2" required
+                               ng-model="confirmPassword" size="40" class="form-control input text-primary m_bottom_0" placeholder="Confirm Password" id="confirmPassword" />
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-lg-offset-4 col-sm-offset-4 col-md-offset-4">
+                    <div class="form-group">
+                        <input type="button" value="SUBMIT"
+                               class="btn btn-lg btn-block btn-oval btn-gray"
+                               data-ng-click="signUp()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group ">
+            <img width="100%" src="{{contentUrl}}images/boxshadow.png">
+        </div>
+    </div>
+    <div class="sep col-sm-12"></div>
+</div>
+<!-- end cms content -->
+

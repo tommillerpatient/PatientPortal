@@ -4,26 +4,36 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width"/>
     <title>Patient portal</title>
+    <link rel="stylesheet" href="{{htmlWebpackPlugin.options.contentUrl}}main.css">
+    <link rel="stylesheet" href="{{htmlWebpackPlugin.options.contentUrl}}vendors/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{{htmlWebpackPlugin.options.contentUrl}}custom.css">
     <link rel="stylesheet" href="{{htmlWebpackPlugin.options.contentUrl}}style.css">
+    <script type="application/javascript" src="{{htmlWebpackPlugin.options.contentUrl}}app-fix.js"></script>
+    <script type="application/javascript" src="{{htmlWebpackPlugin.options.contentUrl}}vendors/angular/angular.min.js"></script>
+    <script type="application/javascript" src="{{htmlWebpackPlugin.options.contentUrl}}vendors/moment/moment.min.js"></script>
     <script type="application/javascript" src="./app.js"></script>
 </head>
 <body>
-<div>
+<div class="site-container">
     <div>
-        <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/login/index.html">login</a> |
-        <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/update/password/index.html">password</a> |
-        <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/update/profile/index.html">profile</a> |
-        <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/journey/index.html">journey</a> |
-        <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/register/index.html">register</a> |
-        <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/logoff/index.html">logoff</a>
+        <div>
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/login/index.html">login</a> |
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/update/password/index.html">password</a> |
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/update/profile/index.html">profile</a> |
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/register/index.html">register</a> |
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/logoff/index.html">logoff</a>
+        </div>
+        <div>
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/journey/index.html">journey</a> |
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/journey/root/index.html">root</a> |
+            <a href="{{htmlWebpackPlugin.options.contentUrl}}patient/journey/blood-work/index.html">blood-work</a>
+        </div>
+        <hr/>
     </div>
-    <hr/>
-</div>
-<!-- begin content -->
-<div class="app-content" ng-app="app">
+    <!-- begin template content -->
     {{{ htmlWebpackPlugin.options.render }}}
+    <!-- end template content -->
 </div>
-<!-- end content -->
 </body>
 </html>
 

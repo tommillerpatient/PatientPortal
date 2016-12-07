@@ -1,62 +1,6 @@
-.app-content{
-    box-sizing: border-box;
-}
-
-.app-content:before,
-.app-content:after{
-    display: table;
-    content: " ";
-}
-
-.form-group input {
-    border: 1px solid #8a7477;
-    border-radius: unset;
-    color: #444;
-    font-size: 13.5px;
-    height: auto;
-    line-height: 18px;
-    margin-bottom: 10px;
-    padding: 11px 8px !important;
-    width: auto !important;
-    min-width: 300px;
-}
-
-.journey{
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.journey-map{
-    float: left;
-    width: 300px;
-    text-align: left;
-    font-size: 14px;
-}
-
-.journey-content{
-    float: left;
-    padding: 10px;
-}
-
-.journey-map-header{
-    background-color: #999;
-    color: white;
-    padding: 10px;
-}
-
-.journey-map-content{
-    background-color: #e8e8e8;
-    padding: 10px;
-}
-
-.clearfix{
-    clear: both;
-}
-
 .sidebarsection {
     background: #e8e8e8 none repeat scroll 0 0;
     width: 100%;
-    margin-top: 30px;
     margin-bottom: 20px;
     overflow: hidden;
 }
@@ -102,4 +46,32 @@ a.more {
     font-style: italic;
     color: #111755 !important;
     text-decoration: underline;
+}
+
+.progress-bar-custom {
+    background-color: rgb(13, 21, 111);
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    /* padding-top: 3px; */
+    /* padding-bottom: 3px; */
+    /* height: 22px; */
+    border-radius: 20px;
+    margin-left: 2px;
+}
+
+.submitting {
+    position: absolute;
+    padding: 5px;
+    color: #111755;
+}
+
+.app-container{
+    padding: 0 50px;
+    font-size: 14px;
+    line-height: 1.42857143;
+}
+
+.login .login-form{
+    padding: 20px;
+    margin-top: 60px;
 }

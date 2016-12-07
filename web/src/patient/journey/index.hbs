@@ -1,31 +1,49 @@
-<div ng-controller="JourneyCtrl">
-    <img src="{{contentUrl}}images/banner_3.png" alt="" width="100%">
-    <p ng-show="submitting">loading...</p>
-    <div class="journey">
-        <div class="journey-map">
-            <div class="sidebarsection">
+<!-- begin resources -->
+<div>
+    <div>
+        <div>{{contentUrl}}vendors/bootstrap/css/bootstrap.css</div>
+        <div>{{contentUrl}}custom.css</div>
+        <div>{{contentUrl}}style.css</div>
+        <div>{{contentUrl}}app-fix.js</div>
+        <div>{{contentUrl}}vendors/angular/angular.min.js</div>
+        <div>{{contentUrl}}vendors/moment/moment.min.js</div>
+    </div>
+    <hr/>
+</div>
+<!-- end resources -->
+<div>
+    <!-- begin cms banner -->
+    <div ng-controller="BannerCtrl">
+        <div class="app-container" style="position: absolute;margin-top: 2%;margin-left:10px">
+            <h1 class="blue" style="font-weight: 100;text-transform: uppercase">Welcome Back <span style="font-weight: 600" ng-bind="firstName"></span></h1>
+            <h3 style="font-weight: 100">You have completed <span class="blue" style="font-weight: 600" ng-bind="percentage">0%</span> of the required<br />surgery prep and clearance processes</h3>
+        </div>
+        <img src="{{contentUrl}}images/banner_3.png" alt="" width="100%">
+        <div style="height: 50px"></div>
+    </div>
+    <!-- end cms banner -->
+    <div class="row app-container">
+        <div class="col-sm-4">
+            <!-- begin cms menu -->
+            <div ng-controller="JourneyCtrl" class="sidebarsection">
                 <div class="headerimg">MY Journey</div>
                 <div class="single">
                     <label><img src="{{contentUrl}}images/icn_blood_work.png" alt="">Blood Work</label>
                     <ul>
-                        <li ng-class="{red:!getActive(step.patientTaskList[0]),green:getActive(step.patientTaskList[0])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[0].patientTaskId)">
+                        <li ng-class="getActiveCss(0)">
                             <div> Lab appointment at Quest or Labcorp</div>
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/blood-work" class="more">more info</a>
                         </li>
-
                     </ul>
                 </div>
 
                 <div class="single">
                     <label><img src="{{contentUrl}}images/ice_cheast-x-ray.png" alt="">Chest X-Ray</label>
                     <ul>
-
-                        <li ng-class="{red:!getActive(step.patientTaskList[1]),green:getActive(step.patientTaskList[1])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[1].patientTaskId)">
+                        <li ng-class="getActiveCss(1)">
                             <div> No appointment needed chest X-ray</div>
-
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/chest-x-ray" class="more">more info</a>
                         </li>
-
                     </ul>
                 </div>
 
@@ -35,65 +53,51 @@
                         Nutrition Counseling
                     </label>
                     <ul>
-
-                        <li ng-class="{red:!getActive(step.patientTaskList[2]),green:getActive(step.patientTaskList[2])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[2].patientTaskId)">
+                        <li ng-class="getActiveCss(2)">
                             <div> 7 Consecutive meetings with your nutritionlist</div>
-
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/nutrition-counseling" class="more">more info</a>
                         </li>
-
                     </ul>
                 </div>
 
                 <div class="single">
                     <label><img src="{{contentUrl}}images/ice_support-gp.png" alt="">Support Group Mtg.</label>
                     <ul>
-
-                        <li ng-class="{red:!getActive(step.patientTaskList[3]),green:getActive(step.patientTaskList[3])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[3].patientTaskId)">
+                        <li ng-class="getActiveCss(3)">
                             <div> 2 meetings required for surgery clearance</div>
-
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/support-group-mtg" class="more">more info</a>
                         </li>
-
                     </ul>
                 </div>
 
                 <div class="single">
                     <label><img src="{{contentUrl}}images/icn_cardiology.png" alt="">Pulmonary Evaluation</label>
                     <ul>
-
-                        <li ng-class="{red:!getActive(step.patientTaskList[4]),green:getActive(step.patientTaskList[4])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[4].patientTaskId)">
+                        <li ng-class="getActiveCss(4)">
                             <div> 5 meetings required for clearance</div>
-
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/pulmonary-evaluation" class="more">more info</a>
                         </li>
-
                     </ul>
                 </div>
 
                 <div class="single">
                     <label><img src="{{contentUrl}}images/icn_pulmonary.png" alt="">Cardiology</label>
                     <ul>
-
-                        <li ng-class="{red:!getActive(step.patientTaskList[5]),green:getActive(step.patientTaskList[5])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[5].patientTaskId)">
+                        <li ng-class="getActiveCss(5)">
                             <div>Choose a Provider from the provided list</div>
-
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/cardiology" class="more">more info</a>
                         </li>
-
                     </ul>
                 </div>
 
                 <div class="single">
-                    <label><img src="{{contentUrl}}images/icn_gastrointestinal.png" alt="">Drexel GI Endoscopy</label>
+                    <label><img src="{{contentUrl}}images/icn_gastrointestinal.png" alt="">Drexel GI
+                        Endoscopy</label>
                     <ul>
-
-                        <li ng-class="{red:!getActive(step.patientTaskList[6]),green:getActive(step.patientTaskList[6])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[6].patientTaskId)">
+                        <li ng-class="getActiveCss(6)">
                             <div>Make an appointment with Drexel GI for an upper endoscopy</div>
-
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/drexel-gi-endoscopy" class="more">more info</a>
                         </li>
-
                     </ul>
                 </div>
 
@@ -101,24 +105,25 @@
                 <div class="single">
                     <label><img src="{{contentUrl}}images/icn_phycological.png" alt="">Psychological Eval.</label>
                     <ul>
-                        <li ng-class="{red:!getActive(step.patientTaskList[7]),green:getActive(step.patientTaskList[7])}" ng-click="getTask(step.stepDetail.stepId, step.patientTaskList[7].patientTaskId)">
+                        <li ng-class="getActiveCss(7)">
                             <div>Psychological evaluation for surgical readiness</div>
-                            <a href="#" class="more">more info</a>
+                            <a href="/patient/journey/psychological-eval" class="more">more info</a>
                         </li>
                     </ul>
                 </div>
 
             </div>
-
+            <!-- end cms menu -->
         </div>
-        <div class="journey-content" ng-show="task">
-            <h4 ng-bind="step.stepDetail.name"></h4>
-            <strong ng-bind="task.stepOfCareTask.name"></strong><span>
-                            (<span ng-show="activeStatus" style="color: green" ng-bind="statuses[task.status]"></span>
-                            <span ng-hide="activeStatus" style="color: red" ng-bind="statuses[task.status]"></span>)
-                        </span>
-            <div ng-bind="'Due Date: ' + dueDate"></div>
-            <div ng-bind="'Completed Date: ' + completedOn"></div>
+        <div class="col-sm-8">
+            <!-- begin cms content -->
+            <div class="col-md-12 progress" ng-controller="ProgressCtrl" style="padding-right: 0px!important;background-color:rgb(155, 155, 155);padding-left: 5px!important;height:26px; padding-top: 3px; padding-bottom: 3px;border: 1px solid #eee;border-radius: 20px;">
+                <div class="progress-bar progress-bar-custom progress-bar-striped " role="progressbar"
+                     aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 0" id="journey-progress-bar" ng-style="percentageStyle">
+                </div>
+                <span style="text-align: right; float: right;margin-right: 20px;color:#fff;position:absolute;right:-6px;"><span ng-bind="percentage">0%</span> OF JOURNEY COMPLETED</span>
+            </div>
+            <!-- end cms content -->
         </div>
     </div>
 </div>

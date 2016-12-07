@@ -65,6 +65,7 @@
   },
   "scripts": {
     "build": "babel-node tools/build.js",
-    "release": "babel-node tools/build.js --release"
+    "release": "babel-node tools/build.js --release",
+    "cms": "babel-node tools/build.js --cms"
   }
 }

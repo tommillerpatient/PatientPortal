@@ -7,20 +7,28 @@ var customProperties = require("postcss-custom-properties")
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const DEBUG = !process.argv.includes('--release');
+
+const CMS = process.argv.includes('--cms');
+const RELEASE = process.argv.includes('--release');
+
+const DEBUG = !CMS && !RELEASE;
 
 var WEB_URL;
 var CONTENT_URL;
 var SERVICE_URL;
 
-if(DEBUG){
+if(CMS){
+    WEB_URL = '/';
+    SERVICE_URL = 'https://sequenceapi.tenethealth.com/';
+    CONTENT_URL = 'https://sequenceapi.tenethealth.com/content/';
+}else if(RELEASE){
+    WEB_URL = '/';
+    SERVICE_URL = 'https://sequenceapi.tenethealth.com/';
+    CONTENT_URL = 'https://sequenceapi.tenethealth.com/content/';
+}else {
     WEB_URL = '/';
     CONTENT_URL = '/';
     SERVICE_URL = 'http://localhost:28507/';
-}else {
-    WEB_URL = '/sequenceapi/';
-    SERVICE_URL = 'https://enode.org/sequenceapi/';
-    CONTENT_URL = 'https://enode.org/sequenceapi/';
 }
 
 var pageContext = {
@@ -40,23 +48,34 @@ function render(url){
     return page;
 }
 
+var cssPlugin = customProperties();
+cssPlugin.setVariables(variables);
+
 function cssTransform(content, path) {
-    var plugin = customProperties();
-    plugin.setVariables(variables);
     return postcss()
-        .use(plugin)
+        .use(cssPlugin)
         .process(content)
         .css;
 }
 
+var htmlWebpackOptions = {
+    inject: false,
+    contentUrl: CONTENT_URL,
+    template: './src/template.hbs'
+};
+
 module.exports = {
     entry: {
         "patient/login": './src/patient/login/app.js',
+        "patient/register": './src/patient/register/app.js',
+        "patient/logoff": './src/patient/logoff/app.js',
+
         "patient/update/password": './src/patient/update/password/app.js',
         "patient/update/profile": './src/patient/update/profile/app.js',
+
         "patient/journey": './src/patient/journey/app.js',
-        "patient/register": './src/patient/register/app.js',
-        "patient/logoff": './src/patient/logoff/app.js'
+        "patient/journey/root": './src/patient/journey/root/app.js',
+        "patient/journey/blood-work": './src/patient/journey/blood-work/app.js'
     },
     output: {
         publicPath: "/",
@@ -90,55 +109,60 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
+            CMS: CMS,
+            RELEASE: RELEASE,
             DEBUG: DEBUG,
+            WEB_URL: JSON.stringify(WEB_URL),
             SERVICE_URL: JSON.stringify(SERVICE_URL),
             CONTENT_URL: JSON.stringify(CONTENT_URL),
         }),
         new CopyWebpackPlugin([
+            { from: './src/main.css', to: './main.css' },
+            { from: './src/app-fix.js', to: './app-fix.js' },
             { from: './src/style.css', to: './style.css', transform: cssTransform },
-            { from: './src/images', to: './images'  }
+            { from: './src/custom.css', to: './custom.css', transform: cssTransform },
+            { from: './src/images', to: './images'  },
+            { from: './src/vendors', to: './vendors'  }
         ]),
         new HtmlWebpackPlugin({
-            inject: false,
-            contentUrl: CONTENT_URL,
-            template: './src/template.hbs',
+            ...htmlWebpackOptions,
             filename: './patient/login/index.html',
             render: render('./src/patient/login/index.hbs')
         }),
         new HtmlWebpackPlugin({
-            inject: false,
-            contentUrl: CONTENT_URL,
-            template: './src/template.hbs',
+            ...htmlWebpackOptions,
             filename: './patient/update/password/index.html',
             render: render('./src/patient/update/password/index.hbs')
         }),
         new HtmlWebpackPlugin({
-            inject: false,
-            contentUrl: CONTENT_URL,
-            template: './src/template.hbs',
+            ...htmlWebpackOptions,
             filename: './patient/update/profile/index.html',
             render: render('./src/patient/update/profile/index.hbs')
         }),
         new HtmlWebpackPlugin({
-            inject: false,
-            contentUrl: CONTENT_URL,
-            template: './src/template.hbs',
+            ...htmlWebpackOptions,
             filename: './patient/journey/index.html',
             render: render('./src/patient/journey/index.hbs')
         }),
         new HtmlWebpackPlugin({
-            inject: false,
-            contentUrl: CONTENT_URL,
-            template: './src/template.hbs',
+            ...htmlWebpackOptions,
             filename: './patient/register/index.html',
             render: render('./src/patient/register/index.hbs')
         }),
         new HtmlWebpackPlugin({
-            inject: false,
-            contentUrl: CONTENT_URL,
-            template: './src/template.hbs',
+            ...htmlWebpackOptions,
             filename: './patient/logoff/index.html',
             render: render('./src/patient/logoff/index.hbs')
+        }),
+        new HtmlWebpackPlugin({
+            ...htmlWebpackOptions,
+            filename: './patient/journey/root/index.html',
+            render: render('./src/patient/journey/root/index.hbs')
+        }),
+        new HtmlWebpackPlugin({
+            ...htmlWebpackOptions,
+            filename: './patient/journey/blood-work/index.html',
+            render: render('./src/patient/journey/blood-work/index.hbs')
         })
     ]
 };

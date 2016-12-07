@@ -1,5 +1,3 @@
-import angular from 'angular';
-
 angular.module('app', [require('../../common/patient/account')])
     .controller('RegisterCtrl',['$scope', 'AccountService', function ($scope, AccountService) {
 
@@ -9,12 +7,12 @@ angular.module('app', [require('../../common/patient/account')])
 
         $scope.patient = {
             patientId: 0,
-            firstName: "Test FN",
-            lastName: "Last FN",
+            firstName: "",
+            lastName: "",
             dob: new Date(),
-            emailAddress: "ravitejav+TNTTest2@gmail.com",
-            addressLine: "Test Address",
-            city: "Test City",
+            emailAddress: "",
+            addressLine: "Address",
+            city: "City",
             stateId: 40,
             medicalRecordNumber: "TMMMERN83483",
             password: ""
@@ -27,7 +25,12 @@ angular.module('app', [require('../../common/patient/account')])
             $scope.error = "";
             $scope.message = "";
 
-            if ($scope.patient.password !== $scope.confirmPassword) {
+            if ($scope.patient.emailAddress != $scope.confirmEmail) {
+                $scope.error = "the emails doesn't match";
+                return;
+            }
+
+            if ($scope.patient.password != $scope.confirmPassword) {
                 $scope.error = "the passwords doesn't match";
                 return;
             }

@@ -1,6 +1,6 @@
-import angular from 'angular';
+//import angular from 'angular';
 
-
+var patientValue;
 const patientKey = "patient_info";
 const tokenKey = "access_token";
 
@@ -9,14 +9,17 @@ function auth() {
 }
 
 function getPatient() {
+    if(patientValue)return patientValue;
     var patientJson = localStorage.getItem(patientKey);
     if(patientJson){
-        return JSON.parse(patientJson);
+        patientValue = JSON.parse(patientJson);
+        return patientValue;
     }
     return null;
 }
 
 function setPatient(patient) {
+    patientValue = patient;
     if(patient){
         localStorage.setItem(patientKey, JSON.stringify(patient));
     }else {

@@ -1,47 +1,71 @@
-import angular from 'angular';
-import moment from 'moment';
+function getActive(task) {
+    return task.status == 3;
+}
 
-angular.module('app', [require('../../common/patient/account'),require('../../common/patient/pathway')])
-    .controller('JourneyCtrl',['$scope', 'AccountService', 'PathwayService', function ($scope, AccountService, PathwayService) {
+function getPercentage(step) {
+    var count = 0;
+    for (var i = 0; i < step.patientTaskList.length; i++) {
+        var task = step.patientTaskList[i];
+        if (getActive(task)) {
+            ++count;
+        }
+    }
+    return count ? Math.floor(100 * (count / 8)) : 0;
+}
 
-        $scope.error = "";
-        $scope.message = "";
-        $scope.submitting = false;
+angular.module('app', [require('../../common/patient/account'), require('../../common/patient/pathway')])
+    .controller('BannerCtrl', ['$scope', 'AccountService', 'PathwayService', function ($scope, AccountService, PathwayService) {
 
-        $scope.statuses = {
-            "1": "New",
-            "2": "In Progress",
-            "3": "Complete",
-            "4": "Incomplete",
-            "5": "Stalled",
-            "6": "Skipped"
-        };
+        $scope.percentage = "0%";
 
         var patient = AccountService.getPatient();
-        var pathway = patient.patientInformationDto.pathwaysDetails[0];
+        if (patient) {
+            var patientInfo = patient.patientInformationDto;
+            $scope.firstName = patientInfo.firstName;
+
+            var pathway = patient.patientInformationDto.pathwaysDetails[0];
 
 
-        $scope.submitting = true;
-        PathwayService.get(patient.patientId, pathway.pathwayId, function (details) {
-            $scope.details = details;
-            $scope.step = details.patientStepDetailList[0];
-            $scope.submitting = false;
-        });
-
-        $scope.getTask = function (stepId, taskId) {
-            PathwayService.getTask(patient.patientId, pathway.pathwayId, stepId, taskId, function (task, step) {
-                $scope.task = task;
-
-                $scope.activeStatus = $scope.getActive(task);
-                var dueDate = moment(task.dueDate);
-                var completedOn = moment(task.completedOn);
-                $scope.dueDate = dueDate.isValid() ? dueDate.format('L') : '';
-                $scope.completedOn = completedOn.isValid() ? completedOn.format('L') : '';
+            PathwayService.get(patient.patientId, pathway.pathwayId, function (res) {
+                $scope.percentage = getPercentage(res.patientStepDetailList[0]) + '%';
             });
+        }
+
+    }])
+    .controller('JourneyCtrl', ['$scope', 'AccountService', 'PathwayService', function ($scope, AccountService, PathwayService) {
+
+        var patient = AccountService.getPatient();
+        if (patient) {
+            var pathway = patient.patientInformationDto.pathwaysDetails[0];
+
+            PathwayService.get(patient.patientId, pathway.pathwayId, function (res) {
+                $scope.step = res.patientStepDetailList[0];
+            });
+        }
+
+        $scope.getActiveCss = function (index) {
+            if ($scope.step) {
+                var active = getActive($scope.step.patientTaskList[index]);
+                return {red: !active, green: active};
+            }
+            return {};
         };
 
-        $scope.getActive = function (task) {
-            return task.status == 3;
-        };
+    }])
+    .controller('ProgressCtrl', ['$scope', 'AccountService', 'PathwayService', function ($scope, AccountService, PathwayService) {
+
+        $scope.percentage = "0%";
+        $scope.percentageStyle = {width: $scope.percentage};
+
+        var patient = AccountService.getPatient();
+        if (patient) {
+            var pathway = patient.patientInformationDto.pathwaysDetails[0];
+
+
+            PathwayService.get(patient.patientId, pathway.pathwayId, function (res) {
+                $scope.percentage = getPercentage(res.patientStepDetailList[0]) + '%';
+                $scope.percentageStyle = {width: $scope.percentage};
+            });
+        }
 
     }]);

@@ -1,16 +1,31 @@
+<!-- begin resources -->
+<div>
+    <div>
+        <div>{{contentUrl}}vendors/bootstrap/css/bootstrap.css</div>
+        <div>{{contentUrl}}custom.css</div>
+        <div>{{contentUrl}}style.css</div>
+        <div>{{contentUrl}}app-fix.js</div>
+        <div>{{contentUrl}}vendors/angular/angular.min.js</div>
+        <div>{{contentUrl}}vendors/moment/moment.min.js</div>
+    </div>
+    <hr/>
+</div>
+<!-- end resources -->
+<!-- begin cms content -->
 <div ng-controller="ProfileCtrl">
-    <img src="{{contentUrl}}images/banner_3.png" alt="" width="100%">
-    <form class="form-horizontal">
+    <div class="form-horizontal">
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="First Name" ng-model="patient.firstName">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="First Name"
+                       ng-model="patient.firstName">
             </div>
         </div>
         <div class="form-group">
             <label for="input3" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="input3" placeholder="Last Name" ng-model="patient.lastName">
+                <input type="text" class="form-control" id="input3" placeholder="Last Name"
+                       ng-model="patient.lastName">
             </div>
         </div>
         <div class="form-group">
@@ -22,13 +37,15 @@
         <div class="form-group">
             <label for="input4" class="col-sm-2 control-label">Email Address</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="input4" placeholder="Email Address" ng-model="patient.emailAddress">
+                <input type="text" class="form-control" id="input4" placeholder="Email Address"
+                       ng-model="patient.emailAddress">
             </div>
         </div>
         <div class="form-group">
             <label for="input5" class="col-sm-2 control-label">Address Line</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="input5" placeholder="Address Line" ng-model="patient.addressLine">
+                <input type="text" class="form-control" id="input5" placeholder="Address Line"
+                       ng-model="patient.addressLine">
             </div>
         </div>
         <div class="form-group">
@@ -40,25 +57,29 @@
         <div class="form-group">
             <label for="input7" class="col-sm-2 control-label">State Id</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="input7" placeholder="State Id" ng-model="patient.stateId">
+                <input type="text" class="form-control" id="input7" placeholder="State Id"
+                       ng-model="patient.stateId">
             </div>
         </div>
         <div class="form-group">
             <label for="input8" class="col-sm-2 control-label">Medical Record Number</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="input8" placeholder="Medical Record Number" ng-model="patient.medicalRecordNumber">
+                <input type="text" class="form-control" id="input8" placeholder="Medical Record Number"
+                       ng-model="patient.medicalRecordNumber">
             </div>
         </div>
         <div class="form-group">
             <label for="input9" class="col-sm-2 control-label">Cell Phone</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="input9" placeholder="Cell Phone" ng-model="patient.cellPhone">
+                <input type="text" class="form-control" id="input9" placeholder="Cell Phone"
+                       ng-model="patient.cellPhone">
             </div>
         </div>
         <div class="form-group">
             <label for="input10" class="col-sm-2 control-label">Home Phone</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="input10" placeholder="Home Phone" ng-model="patient.homePhone">
+                <input type="text" class="form-control" id="input10" placeholder="Home Phone"
+                       ng-model="patient.homePhone">
             </div>
         </div>
         <div class="form-group">
@@ -69,5 +90,6 @@
         <div ng-show="submitting">submitting...</div>
         <div ng-show="message" ng-bind="message"></div>
         <div ng-show="error" ng-bind="error"></div>
-    </form>
+    </div>
 </div>
+<!-- end cms content -->
